@@ -42,8 +42,14 @@ function MyDiff()
 endfunction
 
 
-## basic config
+## GUI Config/hide tool bar and menu bar
 set guioptions-=m
+set guioptions-=T
+set guifont=CaskaydiaCove_Nerd_Font_Mono:h12
+
+
+
+## basic config
 
 set noswapfile
 set number
@@ -73,8 +79,8 @@ filetype plugin on
 filetype indent on
 syntax on
 
-#set background=light
-#colorscheme gruvbox
+set background=dark
+colorscheme gruvbox
 
 ## keymap
 g:mapleader = ","
@@ -123,12 +129,12 @@ tnoremap <a-l> <c-w>l
 ## plugin
 plug#begin('D:APP/ENGINEERING/vim/vim90/plugged')
 Plug 'morhetz/gruvbox'
+Plug 'rakr/vim-one'
 Plug 'easymotion/vim-easymotion'
 Plug 'preservim/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
-Plug 'ryanoasis/vim-devicons'
 Plug 'luochen1990/rainbow'
 Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
@@ -141,6 +147,9 @@ Plug 'gelguy/wilder.nvim'
 Plug 'Yggdroot/indentLine'
 Plug 'mg979/vim-visual-multi', {'branch':'master'}
 Plug 'justinmk/vim-dirvish'
+Plug 'Yggdroot/LeaderF'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'
 plug#end()
 
 ### Plugin/vim-visual-multi
@@ -253,13 +262,9 @@ nnoremap <leader>sc :SClose<cr>
 nnoremap te :NERDTreeToggle<cr>
 
 ### plugin/vim-devicons
-g:webdevicons_enable = 1
-g:weddevicons_enable_nerdtree = 1
-g:webdevicons_enable_airline_tabline = 1
-g:webdevicons_enable_airline_statusline = 1
-g:webdevicons_enable_startify = 1
 
 ### plugin/vim-ariline
+g:airline_theme = 'one'
 g:airline#extensions#branch#vcs_checks = ['untracked', 'dirty']
 g:airline#extensions#tabline#enabled = 1
 g:airline#extensions#tabline#left_sep = ''

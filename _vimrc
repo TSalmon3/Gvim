@@ -411,7 +411,8 @@ g:airline_symbols.branch = ''
 g:airline_symbols.colnr = ' ℅:'
 g:airline_symbols.readonly = ''
 g:airline_symbols.linenr = ' :'
-g:airline_symbols.maxlinenr = '¶ '
+g:airline_symbols.maxlinenr = '☰ '
+g:airline_symbols.dirty = '⚡'
 
 g:airline#extensions#tabline#buffer_idx_mode = 1
 nnoremap <leader>1 <Plug>AirlineSelectTab1

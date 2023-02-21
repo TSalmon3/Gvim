@@ -129,7 +129,6 @@ tnoremap <a-h> <c-w>h
 tnoremap <a-l> <c-w>l
 
 ## plugin
-#plug#begin('D:APP/ENGINEERING/vim/vim90/plugged')
 plug#begin('$VIMRUNTIME/plugged')
 Plug 'morhetz/gruvbox'
 Plug 'easymotion/vim-easymotion'
@@ -156,8 +155,28 @@ Plug 'liuchengxu/vista.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-
+Plug 'preservim/nerdcommenter'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function'
+Plug 'sgur/vim-textobj-parameter'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-syntax'
 plug#end()
+
+## plugin/vim-textobj-parameter
+g:vim_textobj_parameter_mapping = ','
+
+### plugin/nerdcommenter
+g:NERDSpaceDelims = 1
+g:NERDCreateDefaultMappings = 1
+nnoremap <leader>cc <Plug>NERDCommenterComment
+nnoremap <leader>c$ <Plug>NERDCommenterToEOL
+nnoremap <leader>cn <Plug>NERDCommenterNested
+nnoremap <leader>cu <Plug>NERDCommenterUncomment
+vnoremap <leader>cc <Plug>NERDCommenterComment  
+vnoremap <leader>c$ <Plug>NERDCommenterToEOL
+vnoremap <leader>cn <Plug>NERDCommenterNested
+vnoremap <leader>cu <Plug>NERDCommenterUncomment
 
 ### Plugin/markdown-preview
 g:mkdp_brower = 'firefox'
@@ -267,6 +286,7 @@ nmap <leader>rn <Plug>(coc-rename)
 
 # coc/coc-explorer
 nnoremap te <Cmd>CocCommand explorer --toggle --position right<CR> 
+autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 ### plugin/auto-pairs
 g:AutoPairsShortcutToggle = ''

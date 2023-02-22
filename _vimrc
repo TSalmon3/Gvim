@@ -46,7 +46,7 @@ endfunction
 set guioptions-=m
 set guioptions-=T
 set guifont=CaskaydiaCove_Nerd_Font_Mono:h12
-# autocmd GUIEnter * simalt ~x
+autocmd GUIEnter * simalt ~x
 
 ## basic config
 
@@ -74,7 +74,9 @@ set wrapmargin=2
 set updatetime=100
 set incsearch
 set hlsearch
+set noundofile
 set nobackup
+set pumheight=10
 
 filetype plugin on
 filetype indent on
@@ -161,7 +163,27 @@ Plug 'kana/vim-textobj-function'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-syntax'
+
+# Plug 'ludovicchabant/vim-gutentags'
+# Plug 'skywind3000/gutentags_plus' 
 plug#end()
+
+## plugin/gutentags [plus]
+# $GTAGSLABLE = 'native-pygments'
+# $GTAGSCONF = 'D:/APP/ENGINEERING/Vim/vim90/gtags/share/gtags/gtags.conf'
+
+# enable gtags module
+# g:gutentags_modules = ['ctags', 'gtags_cscope']
+
+# config project root markers.
+# g:gutentags_project_root = ['.root', '.git', '.project']
+
+# generate datebases in my cache directory, prevent gtags files polluting my project
+# g:gutentags_cache_dir = expand('$VIMRUNTIME/.cache/.tags')
+
+# change focus to quickfix window after search (optional).
+# g:gutentags_plus_switch = 1
+
 
 ## plugin/vim-textobj-parameter
 g:vim_textobj_parameter_mapping = ','
@@ -267,6 +289,9 @@ nnoremap <silent> gr <Plug>(coc-references)
 # nnoremap <silent> gE <plug>(coc-diagnostic_prev_error)
 # nnoremap <silent> da <Plug>(coc-list-diagnostics)
 
+# Apply the most preferred quickfix action to fix diagnostic on the current line
+nmap <leader>q  <Plug>(coc-fix-current)
+
 # Use K to show documentation in preview window.
 nnoremap <silent> K :call ShowDocumentation()<CR>
 
@@ -292,17 +317,35 @@ autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | end
 g:AutoPairsShortcutToggle = ''
 
 ### plugin/Leaderf
+g:Lf_CacheDirectory = 'D:/APP/ENGINEERING/Vim/vim90/.cache'
 g:Lf_GtagsAutoGenerater = 1
+g:Lf_Gtagslabel = 'default'
+g:Lf_Gtagsconf = 'D:/APP/ENGINEERING/Vim/vim90/gtags/share/gtags/gtags.conf'
 g:Lf_RootMarkerts = ['.git']
 nnoremap <a-f> :Leaderf rg -i<cr>
 nnoremap <a-p> :Leaderf file<cr>
-# nnoremap <a-m> :Leaderf mru<cr>
 nnoremap <a-g> :Leaderf gtags --update<cr> :Leaderf gtags<cr>
+
+# List Reference
 noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+# List Definition
 noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+# Recently gtags search windows
 noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+# Jump to Last Search Resoult
 noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+# Jump to Next Search Resoult
 noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+
+# Search Buffer
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+# Search MRU
+noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+# Search in BufTag
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+# Search in line
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+
 
 ### Plugin/vim-visual-multi
 g:VM_maps = {}
@@ -405,6 +448,7 @@ g:startify_lists = [
 
 # g:startify_bookmarks = ['~/OneDrive/Document/Obsidian/bookmark/index.md']
 
+g:startify_session_dir = '$VIMRUNTIME/.cache/.session'
 nnoremap <leader>ss :SSave<cr>
 nnoremap <leader>sc :SClose<cr>
 

@@ -4,7 +4,7 @@ https://github.com/vim/vim-win32-installer/releases
 
 ## LeaderF
 1. python3 (python311.dll)
-https://www.python.org/ftp/python
+https://www.python.org/downloads/windows/
 2. ripgrep 
 https://github.com/BurntSushi/ripgrep/releases
 3. Global (gtags)
